@@ -1,0 +1,10 @@
+witness,claim_family,expected,observed
+pi-countermodel,primitive-independence,PI false; PII true,"{'PI': False, 'PII': True}"
+pii-countermodel,primitive-independence,PI true; PII false,"{'PI': True, 'PII': False}"
+status-witness,status-separation,five distinct statuses,"{'a': 'inapplicable', 'b': 'prerequisite-unsatisfied', 'c': 'applicable-undefined', 'd': 'defined-zero', 'e': 'defined-nonzero'}"
+stage-2-branch,first-branching,first branch 2,"{'1': 1, '2': 0, '3': 0, '4': 0, '5': 0}"
+stage-3-branch,first-branching,first branch 3,"{'1': 2, '2': 2, '3': 0, '4': 0, '5': 0}"
+stage-4-branch,first-branching,first branch 4,"{'1': 2, '2': 2, '3': 2, '4': 0, '5': 0}"
+compression-collision,classification-obstruction,equal simple summary; no strict core isomorphism,True
+representation-split,optional-representation,core equivalent; represented inequivalent,"{'core_strict_equivalent': True, 'representation_inclusive_equivalent': False}"
+forward-map-chain,map-category,"A->B, B->C, and composite A->C all valid","{'A_to_B': True, 'B_to_C': True, 'A_to_C_composite': True}"
