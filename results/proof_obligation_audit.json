@@ -1,0 +1,19 @@
+{
+  "all_checks_pass": true,
+  "checks": {
+    "Core equivalence can survive different optional representations": true,
+    "Different optional representations need not be representation-inclusively equivalent": true,
+    "Finite forward maps close under the displayed composition": true,
+    "One-input witness completes to one defined property record": true,
+    "One-input witness satisfies both primitive axioms": true,
+    "PI countermodel isolates Primitive Axiom I": true,
+    "PII countermodel isolates Primitive Axiom II": true,
+    "Simple property summaries collide": true,
+    "Stage 5 introduces no independent finite branch in the displayed witnesses": true,
+    "Stage-2 branch is derived by exhaustive carrier-bijection comparison": true,
+    "Stage-3 branch is derived by exhaustive carrier-bijection comparison": true,
+    "Stage-4 branch is derived by exhaustive carrier-bijection comparison": true,
+    "Status separation matches the displayed five-state finite witness": true,
+    "The summary collision pair is not strictly core-isomorphic": true
+  }
+}
