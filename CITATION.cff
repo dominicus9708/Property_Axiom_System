@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this reproducibility repository, cite the associated manuscript and the software release."
+title: "Property Axiom System in Dimensional-Structural Describability — Reproducibility Package"
+type: software
+authors:
+  - family-names: "Kwon"
+    given-names: "Dominicus"
+repository-code: "https://github.com/dominicus9708/Property_Axiom_System"
+license: MIT
+version: "0.1.0"
+date-released: "2026-09-01"
