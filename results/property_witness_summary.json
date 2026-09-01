@@ -1,0 +1,72 @@
+{
+  "completion_stage": {
+    "independent_stage5_branch_found": false
+  },
+  "compression_obstruction": {
+    "strict_core_isomorphic": false,
+    "summary": {
+      "declared_property_count": 2,
+      "properties": {
+        "p1": {
+          "defined_nonzero": 1,
+          "defined_zero": 1,
+          "domain_size": 2
+        },
+        "p2": {
+          "defined_nonzero": 1,
+          "defined_zero": 1,
+          "domain_size": 2
+        }
+      }
+    },
+    "summary_equal": true
+  },
+  "first_branch_witnesses": {
+    "2": {
+      "comparison_counts": {"1": 1, "2": 0, "3": 0, "4": 0, "5": 0},
+      "first_branch": 2,
+      "stage4_equals_stage5": true
+    },
+    "3": {
+      "comparison_counts": {"1": 2, "2": 2, "3": 0, "4": 0, "5": 0},
+      "first_branch": 3,
+      "stage4_equals_stage5": true
+    },
+    "4": {
+      "comparison_counts": {"1": 2, "2": 2, "3": 2, "4": 0, "5": 0},
+      "first_branch": 4,
+      "stage4_equals_stage5": true
+    }
+  },
+  "forward_map_finite_check": {
+    "A_to_B": true,
+    "A_to_C_composite": true,
+    "B_to_C": true
+  },
+  "one_input_model": {
+    "PI": true,
+    "PII": true,
+    "completion": {
+      "dependency_satisfied": {"p": [["x"]]},
+      "domains": {"p": [["x"]]},
+      "records": [{"input": ["x"], "property": "p", "value": 1}],
+      "statuses": {"p": {"('x',)": "defined-nonzero"}}
+    },
+    "defined_record_count": 1
+  },
+  "optional_representation": {
+    "core_strict_equivalent": true,
+    "representation_inclusive_equivalent": false
+  },
+  "primitive_axiom_independence": {
+    "pi_countermodel": {"PI": false, "PII": true},
+    "pii_countermodel": {"PI": true, "PII": false}
+  },
+  "status_separation": {
+    "a": "inapplicable",
+    "b": "prerequisite-unsatisfied",
+    "c": "applicable-undefined",
+    "d": "defined-zero",
+    "e": "defined-nonzero"
+  }
+}
