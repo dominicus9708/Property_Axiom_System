@@ -1,0 +1,28 @@
+{
+  "title": "Property Axiom System in Dimensional-Structural Describability — Reproducibility Package",
+  "upload_type": "software",
+  "description": "Standard-library Python reproduction and proof-audit companion for the finite constructions in the generalized Property Axiom System in Dimensional-Structural Describability. The package reproduces the two primitive-axiom independence countermodels, a one-input nontrivial model, finite status separation, Stage-2/3/4 first-branch witnesses by exhaustive carrier-bijection comparison, a simple-summary collision with a strict-core-isomorphism obstruction, an optional-representation separation witness, and a finite forward-map composition check. General set-theoretic proofs remain in the manuscript. Axis realization, line/rank, bilinear, normal, and cyclic-axis structures are intentionally excluded from the universal property core and remain part of the separate realized-axis specialization.",
+  "creators": [
+    {
+      "name": "Kwon, Dominicus"
+    }
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "Dimensional-Structural Describability",
+    "Property Axiom System",
+    "typed property",
+    "partial assignment",
+    "finite witness",
+    "reproducibility",
+    "proof audit"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/dominicus9708/Property_Axiom_System",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
