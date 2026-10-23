@@ -38,11 +38,27 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          MISMATCH=0
           for FILE in property_witness_summary.json proof_obligation_audit.json witness_catalog.csv; do
-            cmp "$RUNNER_TEMP/property-original/$FILE" "results/$FILE"
-            echo "EXACT ORIGINAL FIXTURE MATCH: $FILE"
+            if cmp -s "$RUNNER_TEMP/property-original/$FILE" "results/$FILE"; then
+              echo "EXACT ORIGINAL FIXTURE MATCH: $FILE"
+            else
+              echo "FIXTURE MISMATCH: $FILE"
+              echo '------- committed vs freshly regenerated -------'
+              diff -u "results/$FILE" "$RUNNER_TEMP/property-original/$FILE" | head -100 || true
+              echo "Historical fixture SHA256:"
+              sha256sum "results/$FILE"
+              echo "Freshly regenerated SHA256:"
+              sha256sum "$RUNNER_TEMP/property-original/$FILE"
+              MISMATCH=1
+            fi
           done
+          if [[ "$MISMATCH" != "0" ]]; then
+            echo "AUDIT RESULT: AT LEAST ONE HISTORICAL FIXTURE DOES NOT MATCH"
+            exit 1
+          fi
       - name: Run expected-negative tests against original implementations
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
