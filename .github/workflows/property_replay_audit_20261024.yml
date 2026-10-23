@@ -1,0 +1,43 @@
+name: Property 2026-10-24 Non-Destructive Replay Audit
+on:
+  push:
+    paths:
+      - 'audits/2026-09-01/PA-REPLAY-20261024_NEGATIVE_CONTROLS.py'
+      - '.github/workflows/property_replay_audit_20261024.yml'
+  workflow_dispatch:
+jobs:
+  original-and-negative-controls:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Freeze exact historical src/test blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object src/property_axiom_reproduction.py)" = "04844beca113c24267660fcbb09bc8f833403a28"
+          test "$(git hash-object src/verify_property_axiom_results.py)" = "18f48c15e142a8da2b8c283404ab1fd0d0c262d2"
+          test "$(git hash-object tests/test_property_axiom_reproduction.py)" = "8ba18051a84c8ea913d5773139674e3aba0749a3"
+          echo "Original src and test blobs unchanged"
+      - name: Compile and regenerate original witness files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -W error -m py_compile src/property_axiom_reproduction.py src/verify_property_axiom_results.py audits/2026-09-01/PA-REPLAY-20261024_NEGATIVE_CONTROLS.py
+          python src/property_axiom_reproduction.py --output-dir "$RUNNER_TEMP/property-original"
+          python src/verify_property_axiom_results.py --results-dir "$RUNNER_TEMP/property-original"
+          python -m unittest discover -s tests -v
+          sha256sum "$RUNNER_TEMP/property-original/"*
+      - name: Run expected-negative tests against original implementations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -W error audits/2026-09-01/PA-REPLAY-20261024_NEGATIVE_CONTROLS.py > "$RUNNER_TEMP/negative.json.log"
+          cat "$RUNNER_TEMP/negative.json.log"
+          grep -q 'NEGATIVE AUDIT EXPECTED-DETECTION PASS 9 cases' "$RUNNER_TEMP/negative.json.log"
