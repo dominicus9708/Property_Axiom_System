@@ -34,6 +34,14 @@ jobs:
           python src/verify_property_axiom_results.py --results-dir "$RUNNER_TEMP/property-original"
           python -m unittest discover -s tests -v
           sha256sum "$RUNNER_TEMP/property-original/"*
+      - name: Compare all three regenerated original artifacts with historical committed fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          for FILE in property_witness_summary.json proof_obligation_audit.json witness_catalog.csv; do
+            cmp "$RUNNER_TEMP/property-original/$FILE" "results/$FILE"
+            echo "EXACT ORIGINAL FIXTURE MATCH: $FILE"
+          done
       - name: Run expected-negative tests against original implementations
         shell: bash
         run: |
