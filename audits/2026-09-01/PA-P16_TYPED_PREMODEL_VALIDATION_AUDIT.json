@@ -1,0 +1,42 @@
+{
+  "case": "PA-P16-20260901-TYPED-PREMODEL-VALIDATION-AND-C1-INTERFACE-001",
+  "checks": {
+    "C1_completion_runs_on_non_core_PII_counterpremodel": true,
+    "C1_completion_runs_on_non_core_PI_counterpremodel": true,
+    "declared_unavailable_surplus_assignment_accepted": true,
+    "duplicate_aux_carrier_tuple_accepted_as_presentation": true,
+    "duplicate_property_declaration_counted_twice": true,
+    "empty_signature_profile_accepted_despite_m_ge_1": true,
+    "missing_declared_applicability_coordinate_accepted": true,
+    "missing_declared_prerequisite_coordinate_accepted": true,
+    "no_shared_inherited_carrier_interface": true,
+    "positive_defined_zero_is_statused": true,
+    "positive_primitives_preserved_in_completion": true,
+    "positive_valid_core_is_admitted": true,
+    "unavailable_and_supplied_empty_are_distinct_at_kind_level": true,
+    "unavailable_and_supplied_empty_input_product_both_return_empty": true,
+    "unconstrained_assigned_python_value_accepted": true,
+    "undeclared_extra_aux_sort_accepted": true,
+    "undeclared_surplus_relation_accepted": true,
+    "unknown_declaration_raises_not_boolean_validation_result": true,
+    "value_carrier_not_represented_by_PropertySpec": true,
+    "wrong_applicability_member_accepted": true,
+    "wrong_input_arity_in_applicability_accepted": true,
+    "wrong_prerequisite_member_accepted": true
+  },
+  "not_a_general_axiom_refutation": true,
+  "not_a_general_typed_validation_proof": true,
+  "number_of_checks": 22,
+  "original_property_PDF_tex_Zenodo_modified": false,
+  "original_source_files_modified": false,
+  "original_test_results_modified": false,
+  "passed_expected_negative_and_positive_controls": true,
+  "source_pdf_sha256": "03a7e5693b73f0332e71a5eb83483e4f3539fc940d5368d5eec1523867e3d79c",
+  "whole_property_FPA": "OPEN",
+  "witness_interpretations": {
+    "core_validity_scope": "PI and PII only; assumes well-typed primitive coordinate sets",
+    "premodel_completion_scope": "completion() is callable on PI/PII-violating premodels and yields records; source C1 only claims a full model for admitted primitive cores",
+    "unavailable_distinction": "profile_available/status distinguish missing carrier, but input_product returns empty set for both",
+    "value_type_scope": "PropertySpec lacks mathematical value carrier Z_L,pi and so cannot reject outside-codomain values"
+  }
+}
