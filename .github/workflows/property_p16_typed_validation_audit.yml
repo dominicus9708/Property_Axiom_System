@@ -1,0 +1,48 @@
+name: Property P16 Typed Premodel Source-versus-Code Audit
+on:
+  push:
+    paths:
+      - 'audits/2026-09-01/PA-P16_TYPED_PREMODEL_VALIDATION_AUDIT.py'
+      - 'audits/2026-09-01/PA-P16_TYPED_PREMODEL_VALIDATION_AUDIT.json'
+      - '.github/workflows/property_p16_typed_validation_audit.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Pin unchanged original Python and tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object src/property_axiom_reproduction.py)" = "04844beca113c24267660fcbb09bc8f833403a28"
+          test "$(git hash-object src/verify_property_axiom_results.py)" = "18f48c15e142a8da2b8c283404ab1fd0d0c262d2"
+          test "$(git hash-object tests/test_property_axiom_reproduction.py)" = "8ba18051a84c8ea913d5773139674e3aba0749a3"
+          echo "P16 ORIGINAL SOURCE BLOB LOCK PASS"
+      - name: Compile and execute independent P16 typing and C1 checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -W error -m py_compile audits/2026-09-01/PA-P16_TYPED_PREMODEL_VALIDATION_AUDIT.py
+          python -W error audits/2026-09-01/PA-P16_TYPED_PREMODEL_VALIDATION_AUDIT.py "$RUNNER_TEMP/p16.json"
+          echo P16_JSON_BEGIN
+          cat "$RUNNER_TEMP/p16.json"
+          echo P16_JSON_END
+          if [[ -f audits/2026-09-01/PA-P16_TYPED_PREMODEL_VALIDATION_AUDIT.json ]]; then
+            python -c 'import json,sys; a=json.load(open(sys.argv[1]));b=json.load(open(sys.argv[2]));assert a==b;print("P16 ARCHIVED JSON MATCH")' "$RUNNER_TEMP/p16.json" audits/2026-09-01/PA-P16_TYPED_PREMODEL_VALIDATION_AUDIT.json
+          else
+            echo "P16 JSON not yet archived"
+          fi
+          sha256sum audits/2026-09-01/PA-P16_TYPED_PREMODEL_VALIDATION_AUDIT.py "$RUNNER_TEMP/p16.json"
+      - name: Re-run original seven unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -v
