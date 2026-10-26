@@ -66,3 +66,23 @@ The package also does not assign physical, geometric, legal, software, or empiri
 ## Formation and axis-specialization boundary
 
 The code treats the Stage-VI Formation Axiom System record as fixed background provenance and does not modify formation assignments, roles, admitted channels, or formation traces. The generalized property core does not assume `tag`, `line`, `sub`, `normal`, `AxLine`, realized-axis rank, a bilinear form, or cyclic triadic closure. Those coordinates belong to the separate realized-axis specialization rather than to the universal property core.
+
+## Current research revisions vs archived software (2026-10-27)
+
+**This repository's original reproduction code and `1.1` GitHub release document the 2026-09-01 manuscript, not a newly published P27 edition.** The historical `src/`, `tests/`, and `results/` remain unchanged. All newer manuscripts and broader audits are kept separately under [DSD_Method_Family](https://github.com/dominicus9708/DSD_Method_Family/tree/main/DSD_Audit/audits/formal_proof/property_axiom_system/versions/2026-09-01).
+
+[P27 mathematical compatibility/errata and full release distinction](audits/2026-10-27/P27_LEGACY_RELEASE_AND_CURRENT_PAPER_COMPATIBILITY.md) documents the exact amended scopes: declared and source-profile-available inputs in forward maps; prerequisite-specific embedding reflection (E1–E3); strict isomorphism requiring S1/S2/S3 (not bare carrierwise bijection); and a property-**labelled**, zero-bearing/profile-available finite summary. The existing `simple_summary()` already retains kind names as dictionary keys but is validated as a manuscript analogue **only within that P27 summary domain**.
+
+An additional [independent P27 verifier](audits/2026-10-27/p27_independent_math.py) and [archived expected JSON](audits/2026-10-27/p27_expected_result.json) test 672 small cores and 396,898 ordered same-size model pairs, plus edge-case counterexamples. The [dedicated GitHub Actions workflow](.github/workflows/property_p27_current_audit.yml) replays the original 7 tests and three saved outputs separately from the P27 check under Python 3.10 and 3.12. **Finite consistency/regression is not a proof over arbitrary signatures or infinite sets.**
+
+On Windows 11, from **this repository root**:
+
+```powershell
+python src\property_axiom_reproduction.py --output-dir results
+python src\verify_property_axiom_results.py --results-dir results
+python -m unittest discover -s tests -v
+
+python audits\2026-10-27\p27_independent_math.py audits\2026-10-27\p27_replay.json
+```
+
+No new software tag or Zenodo version was created by these audit additions. For scholarly citation, distinguish the historical published paper, the original software release and any later reviewed P27 manuscript revision.
