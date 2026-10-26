@@ -1,0 +1,26 @@
+{
+  "cases": {
+    "S2_extra_target_carrier_countermodel": true,
+    "S3_extra_target_decl_countermodel": true,
+    "empty_prerequisite_E1_reflection_not_vacuous": true,
+    "first_branch_histogram": {
+      "2": 62932,
+      "3": 311580,
+      "4": 21120
+    },
+    "independence_two_typed_counterpremodels": true,
+    "old_summary_label_collision_counterexample": true,
+    "ordered_model_pair_checks": 396898,
+    "stage4_stage5_equivalence_pairs": 1266,
+    "strict_embedding_map_count": 1301,
+    "typed_axiom_and_C1_idempotence": 672,
+    "unavailable_profile_identity_defined": true
+  },
+  "limits": "only one auxiliary sort with n=0,1,2, two property kinds p(no prerequisites),q(one prerequisite), Z={0,1}",
+  "model_counts": {
+    "0": 4,
+    "1": 35,
+    "2": 629,
+    "unavailable": 4
+  }
+}
