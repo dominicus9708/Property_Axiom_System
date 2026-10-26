@@ -1,0 +1,62 @@
+name: Property Current P27 Finite Audit (Historical v1.1 Preserved)
+on:
+  push:
+    paths:
+      - '.github/workflows/property_p27_current_audit.yml'
+      - 'audits/2026-10-27/**'
+  workflow_dispatch:
+jobs:
+  historical-and-p27:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10','3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Confirm historical 2026-09-01 source custody
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object src/property_axiom_reproduction.py)" = "04844beca113c24267660fcbb09bc8f833403a28"
+          test "$(git hash-object src/verify_property_axiom_results.py)" = "18f48c15e142a8da2b8c283404ab1fd0d0c262d2"
+          test "$(git hash-object tests/test_property_axiom_reproduction.py)" = "8ba18051a84c8ea913d5773139674e3aba0749a3"
+          echo "HISTORICAL RELEASE-CODE CUSTODY EXACT"
+      - name: Replay original finite examples without overwriting tracked results
+        shell: bash
+        run: |
+          set -euo pipefail
+          python src/property_axiom_reproduction.py --output-dir "$RUNNER_TEMP/p27-original"
+          python src/verify_property_axiom_results.py --results-dir "$RUNNER_TEMP/p27-original"
+          python -m unittest discover -s tests -v
+          python - "$RUNNER_TEMP/p27-original" results <<'PY'
+          import csv,json,sys
+          from pathlib import Path
+          fresh,archived=map(Path,sys.argv[1:])
+          for name in ('property_witness_summary.json','proof_obligation_audit.json','witness_catalog.csv'):
+              if name.endswith('.json'):
+                  a=json.loads((fresh/name).read_text())
+                  b=json.loads((archived/name).read_text())
+              else:
+                  with (fresh/name).open(newline='') as f: a=list(csv.reader(f))
+                  with (archived/name).open(newline='') as f: b=list(csv.reader(f))
+              assert a==b,name
+          print('HISTORICAL ORIGINAL 3 OUTPUTS SEMANTIC REPLAY PASS')
+          PY
+      - name: Independent latest P27 finite model regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          python audits/2026-10-27/p27_independent_math.py "$RUNNER_TEMP/p27-current.json"
+          python - "$RUNNER_TEMP/p27-current.json" audits/2026-10-27/p27_expected_result.json <<'PY'
+          import json,sys
+          left=json.load(open(sys.argv[1],encoding='utf-8'))
+          right=json.load(open(sys.argv[2],encoding='utf-8'))
+          assert left==right,'P27 INDEPENDENT MODEL REGRESSION MISMATCH'
+          assert left['cases']['ordered_model_pair_checks']==396898
+          assert sum(left['model_counts'].values())==672
+          print('P27 CURRENT AUDIT FULL JSON EXACT: 672 cores / 396898 model pair checks')
+          PY
