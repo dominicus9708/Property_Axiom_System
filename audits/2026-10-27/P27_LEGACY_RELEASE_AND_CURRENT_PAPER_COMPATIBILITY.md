@@ -10,7 +10,7 @@ Current revised research line: `dominicus9708/DSD_Method_Family`.
 - The repo's standard-library `src/property_axiom_reproduction.py`, `src/verify_property_axiom_results.py`, `tests/test_property_axiom_reproduction.py`, historic result fixtures and older failed/successful CI checks are **historical evidence**. They are NOT edited by this audit.
 - The original published manuscript contains later-identified §4 and §6 math-scope issues. The release description's bare phrase “exactly the bijective embeddings” is NOT a valid characterization without availability- and declaration-set equality; see below. An historical release remains archived, not silently altered.
 - Existing `.zenodo.json` metadata describes the historical software companion, not the newly published P27 research edition. A new GitHub tag or automatic Zenodo software release was NOT created.
-- Existing `CITATION.cff` says software version `0.1.0`, whereas a GitHub release is named/tagged `1.1`. This is a release-metadata discrepancy to resolve explicitly on a **future publication decision**, not a reason to rewrite historical tags automatically.
+- Existing `CITATION.cff` identifies the **software companion as `0.1.0`**, whereas GitHub release tag `1.1` is titled for the **paper**. These may denote different version axes and are **not necessarily erroneous**; document the distinction explicitly if issuing a future separate software/paper release, rather than rewriting historical tags automatically.
 - The exact original **general** Property Axiom System Zenodo manuscript DOI has not been independently established by this GitHub-only audit. Do not substitute the separate realized-axis specialized DOI, and do not invent a DOI.
 
 ## Required interpretation update
