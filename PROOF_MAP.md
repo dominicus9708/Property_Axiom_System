@@ -25,3 +25,19 @@ This map states what each executable check supports and what remains a manuscrip
 | Stage-VI factorization boundary | fixed-background assumption in all constructors | Formation provenance is held fixed; the general interface theorem remains a manuscript statement |
 
 The executable package is therefore a reproducibility and proof-audit companion, not an automated formalization of the entire Property Axiom System.
+
+## Supplemental current P27 audit (2026-10-27; **not** part of historical release 1.1)
+
+The original proof-map table above applies only to the deterministic September 2026 source implementation. It does **not** test the general typed-profile/embedding requirements of revised Property P27.
+
+| P27 revised mathematical obligation | New independent code | Exact applicability and limits |
+|---|---|---|
+| Stage-VI-fixed typed availability distinctions | `audits/2026-10-27/p27_independent_math.py` | Adversarial missing sort versus supplied empty carrier; one auxiliary sort only |
+| Correct S2/S3 strict comparison boundaries | same checker | Constructed forward source embeddings with extra target declaration or availability; not strict |
+| E1 applicability when prerequisite set empty | same checker | Independent applicability reflection remains required even if E2 is vacuous |
+| Strict isomorphism vs `I_4` | same checker | 396,898 ordered same-size small-model pair checks; general signature theorem remains manuscript proof |
+| Deterministic C1 and `I_4=I_5` | same checker | 672 cores and 1,266 stage-4/5 equivalent comparison pairs; finite only |
+| Label-retaining simple summary | Existing historical `simple_summary()` dictionary keyed by property name plus independent P27 checker | Must restrict mathematical Def9.1 to declared zero-bearing, profile-available property-finite models; old code itself does **not** validate that typing domain |
+| Two primitive axioms / independence | Original one-input constructors plus independent typed counterpremodels | Witnesses show nonderivability over appropriate shared typed-premodel backgrounds, not every fixed signature |
+
+Use [2026-10-27 full compatibility and release audit](audits/2026-10-27/P27_LEGACY_RELEASE_AND_CURRENT_PAPER_COMPATIBILITY.md) and [archived independent P27 results](audits/2026-10-27/p27_expected_result.json) for exact scope. General set-theoretic proof obligations, external peer evaluation and whole FPA remain **OPEN**.
